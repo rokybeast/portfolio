@@ -1,18 +1,16 @@
-import BlurText from "@/components/BlurText";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <BlurText
-          text="blurry!"
-          delay={150}
-          animateBy="words"
-          direction="top"
-          className="text-2xl mb-8"
-        />
-        <h1 className="text-4xl font-bold font-display">Work In Progress :)</h1>
-        <p className="font-sans">A really fun website, by rokybeast!</p>
+    <div className="bg-black min-h-screen w-full relative flex items-center justify-center overflow-hidden">
+      <div className="absolute top-0 bottom-0 left-8 sm:left-16 w-px bg-neutral-800/80" />
+      <div className="absolute top-0 bottom-0 right-8 sm:right-16 w-px bg-neutral-800/80" />
+
+      <div className="absolute left-0 right-0 top-8 sm:top-16 h-px bg-neutral-800/80" />
+      <div className="absolute left-0 right-0 bottom-8 sm:bottom-16 h-px bg-neutral-800/80" />
+
+      <main className="relative z-10 p-10 text-neutral-400">
+        <h1 className="text-4xl font-bold font-display">Work in progress.</h1>
+        <p className="text-lg">im making it, its gonna come soon.</p>
       </main>
     </div>
   );
