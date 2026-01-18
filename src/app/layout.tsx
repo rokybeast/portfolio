@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const clashDisplay = localFont({
-  src: "../../public/fonts/ClashDisplay-Variable.woff2",
-  variable: "--font-clash-display",
+const syne = localFont({
+  src: "../../public/fonts/Syne.woff2",
+  variable: "--font-syne",
   display: "swap",
 });
 
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${clashDisplay.variable} antialiased`}>
+      <body className={`${manrope.variable} ${syne.variable} antialiased`}>
         {children}
       </body>
     </html>
