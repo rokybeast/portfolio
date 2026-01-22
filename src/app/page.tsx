@@ -8,12 +8,9 @@ export default function Home() {
       <div className="absolute left-0 right-0 bottom-[0.5cm] h-px bg-neutral-800/80" />
 
       <main className="flex items-center justify-center h-screen text-neutral-400">
-        <h1 className="text-4xl font-bold font-display font-black">
+        <h1 className="text-4xl font-bold font-display font-900">
           [rokybeast]
         </h1>
-        <p className="text-lg">
-          im making it, its gonna come soon.
-        </p>
       </main>
     </div>
   );
