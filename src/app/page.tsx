@@ -13,8 +13,9 @@ export default function Home() {
       <h1 className="text-4xl font-bold font-display head">
       [rokybeast]
       </h1>
+      <br>
       <ShinyText
-        text="a portfolio website."
+        text="My Portfolio (nothing here tho)"
         speed={1}
         delay={0}
         color="#b5b5b5"
