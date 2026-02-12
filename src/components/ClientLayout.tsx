@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Preloader from "@/components/PreLoader";
+import Navbar from "@/components/Navbar";
 
 export default function ClientLayout({
   children,
@@ -13,7 +14,10 @@ export default function ClientLayout({
   return (
     <>
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      <div className={isLoading ? "hidden" : "block"}>{children}</div>
+      <div className={isLoading ? "hidden" : "block"}>
+        <Navbar />
+        {children}
+      </div>
     </>
   );
 }
