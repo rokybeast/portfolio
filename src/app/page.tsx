@@ -13,19 +13,6 @@ export default function Home() {
       <h1 className="text-4xl font-bold font-display head">
       [rokybeast]
       </h1>
-      <br>
-      <ShinyText
-        text="My Portfolio (nothing here tho)"
-        speed={1}
-        delay={0}
-        color="#b5b5b5"
-        shineColor="#ffffff"
-        spread={120}
-        direction="left"
-        yoyo={false}
-        pauseOnHover={false}
-        disabled={false}
-      />
       </main>
     </div>
   );
