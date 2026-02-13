@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
+import Magnet from "./Magnet";
+import DecryptedText from "./DecryptedText";
+import ShinyText from "./ShinyText";
 
 const links: [string, string][] = [
   ["Home", "/"],
@@ -31,78 +34,90 @@ export default function Navbar() {
         animate={{
           y: 0,
           opacity: 1,
-          top: isScrolled ? "0" : "0.5cm",
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-[0.5cm] right-[0.5cm] z-50 bg-black/85 backdrop-blur-md border border-white/10 flex items-center justify-between h-16"
+        transition={{ duration: 0.5, ease: "circOut" }}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-12 h-24 transition-all duration-500 ${isScrolled ? "bg-black/80 backdrop-blur-xl border-b border-white/10" : "bg-transparent"
+          }`}
       >
-        <div className="text-white font-medium text-lg tracking-tight px-6 h-full flex items-center">
-          [rokybeast]
+        <div className="z-50">
+          <Link href="/">
+            <div className="text-2xl font-bold tracking-tighter text-white">
+              <DecryptedText
+                text="[rokybeast]"
+                animateOn="view"
+                revealDirection="center"
+
+              />
+            </div>
+          </Link>
         </div>
 
-        <div className="hidden md:flex items-stretch h-full absolute left-1/2 -translate-x-1/2">
+        <div className="hidden md:flex items-center gap-12 absolute left-1/2 -translate-x-1/2">
           {links.map(([name, route]) => (
-            <Link
-              key={name}
-              href={route}
-              className="px-8 h-full flex items-center justify-center text-white/70 hover:text-black hover:bg-white transition-all duration-300 text-sm font-light tracking-wide"
-            >
-              {name}
-            </Link>
+            <Magnet key={name} padding={20} disabled={false} magnetStrength={3}>
+              <Link
+                href={route}
+                className="text-white/70 hover:text-white transition-colors text-sm font-medium tracking-widest uppercase relative group"
+              >
+                {name}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
+              </Link>
+            </Magnet>
           ))}
         </div>
 
-        <div className="hidden md:flex h-full">
-          <Link
-            href="/contact"
-            className="bg-white text-black px-8 h-full flex items-center justify-center text-sm font-medium hover:bg-white/90 transition-all duration-300"
-          >
-            Contact Me
+        <div className="hidden md:block z-50">
+          <Link href="/contact">
+            <div className="px-6 py-3 bg-white hover:bg-white/90 transition-colors text-black font-bold uppercase tracking-wide text-xs">
+              <ShinyText text="Contact Me" disabled={false} speed={3} className="text-black" />
+            </div>
           </Link>
         </div>
 
         <button
           onClick={() => setIsOpen(true)}
-          className="md:hidden text-white px-6 h-full flex items-center justify-center hover:bg-white/10 transition-colors"
+          className="md:hidden text-white z-50 p-2 hover:bg-white/10 transition-colors"
         >
-          <Menu size={24} />
+          <Menu size={32} strokeWidth={1.5} />
         </button>
       </motion.nav>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "tween", duration: 0.4, ease: "circOut" }}
-            className="fixed inset-0 z-60 bg-black flex flex-col items-center justify-center gap-8 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-3xl flex flex-col items-center justify-center"
           >
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 text-white p-2 hover:bg-white/10 transition-colors"
+              className="absolute top-8 right-8 text-white p-4 hover:bg-white/10 transition-colors"
             >
-              <X size={32} />
+              <X size={40} strokeWidth={1} />
             </button>
 
-            {links.map(([name, route]) => (
-              <Link
-                key={name}
-                href={route}
-                onClick={() => setIsOpen(false)}
-                className="text-2xl text-white/80 hover:text-white font-light"
-              >
-                {name}
-              </Link>
-            ))}
+            <div className="flex flex-col items-center gap-12">
+              {links.map(([name, route]) => (
+                <Link
+                  key={name}
+                  href={route}
+                  onClick={() => setIsOpen(false)}
+                  className="text-4xl text-white font-black tracking-tighter hover:text-white/50 transition-colors uppercase"
+                >
+                  <DecryptedText text={name} animateOn="view" speed={100} />
+                </Link>
+              ))}
 
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="mt-4 px-8 py-3 bg-white text-black font-medium"
-            >
-              Contact Me
-            </Link>
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="mt-8 px-12 py-4 bg-white text-black font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+              >
+                Contact Me
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
